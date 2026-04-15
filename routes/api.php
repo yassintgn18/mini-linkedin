@@ -12,3 +12,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
 });
+
+
+// Test route for role middleware (temporary, remove later)
+Route::middleware(['auth:api', 'role:admin'])->get('/admin/test', function () {
+    return response()->json(['message' => 'Welcome admin!']);
+});
