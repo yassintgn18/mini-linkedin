@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OffreController;
 use App\Http\Controllers\ProfilController;
 
 // Public routes (no authentication needed)
@@ -29,3 +30,15 @@ Route::middleware('role:candidat')->group(function () {
     Route::delete('/profil/competences/{competence}', [ProfilController::class, 'removeCompetence']);
 });
 
+//Routes liées aux offres
+Route::middleware('auth:api')->group(function () {
+    Route::get('offres', [OffreController::class, 'index']);
+    Route::get('offres/{offre}', [OffreController::class, 'show']);
+});
+
+//Uniquement pour les recruteurs
+Route::middleware(['auth:api', 'role:recruteur'])->group(function () {
+    Route::post('/offres', [OffreController::class, 'store']);
+    Route::put('/offres/{offre}', [OffreController::class, 'update']);
+    Route::delete('/offres/{offre}', [OffreController::class, 'destroy']);
+});
