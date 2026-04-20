@@ -1,59 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini LinkedIn API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-12-red)
+![PHP](https://img.shields.io/badge/PHP-8.2-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-orange)
+![JWT](https://img.shields.io/badge/Auth-JWT-green)
 
-## About Laravel
+Backend API for a recruitment platform connecting candidates and recruiters.
+Candidates can create profiles, add skills, and apply to job offers.
+Recruiters can post offers and manage applications.
+Administrators supervise the entire platform.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Built with Laravel 12, JWT authentication, and role-based access control.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Prerequisites
 
-## Learning Laravel
+- PHP 8.2+
+- Composer
+- MySQL 8.0+
+- XAMPP or equivalent
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/yassintgn18/mini-linkedin.git
+cd mini-linkedin
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Then open `.env` and configure your database:
 
-### Premium Partners
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mini_linkedin
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Then generate the JWT secret:
 
-## Contributing
+```bash
+php artisan jwt:secret
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Then run migrations and seed the database:
 
-## Code of Conduct
+```bash
+php artisan migrate:fresh --seed
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Test Accounts
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+After seeding, emails are randomly generated but the password is `password` for all users.
+Use the `/api/login` endpoint with any seeded email from your database and password `password`.
 
-## License
+Roles available: `admin`, `recruteur`, `candidat`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Authentication
+
+This API uses JWT. After login you receive a token. Include it in every protected request:
+Authorization: Bearer your_token_here
+
+---
+
+## API Routes
+
+### Authentication
+
+| Method | Endpoint      | Role   | Description                    |
+| ------ | ------------- | ------ | ------------------------------ |
+| POST   | /api/register | Public | Register a new user            |
+| POST   | /api/login    | Public | Login and get JWT token        |
+| GET    | /api/me       | Auth   | Get current authenticated user |
+| POST   | /api/logout   | Auth   | Logout and invalidate token    |
+| POST   | /api/refresh  | Auth   | Refresh JWT token              |
+
+### Profile Management
+
+| Method | Endpoint                             | Role     | Description                |
+| ------ | ------------------------------------ | -------- | -------------------------- |
+| POST   | /api/profil                          | Candidat | Create profile (once only) |
+| GET    | /api/profil                          | Candidat | View own profile           |
+| PUT    | /api/profil                          | Candidat | Update own profile         |
+| POST   | /api/profil/competences              | Candidat | Add skill to profile       |
+| DELETE | /api/profil/competences/{competence} | Candidat | Remove skill from profile  |
+
+### Job Offers
+
+| Method | Endpoint         | Role                   | Description                              |
+| ------ | ---------------- | ---------------------- | ---------------------------------------- |
+| GET    | /api/offres      | Public                 | List active offers (paginated, filtered) |
+| GET    | /api/offres/{id} | Public                 | Get offer details                        |
+| POST   | /api/offres      | Recruteur              | Create a new offer                       |
+| PUT    | /api/offres/{id} | Recruteur (owner only) | Update own offer                         |
+| DELETE | /api/offres/{id} | Recruteur (owner only) | Delete own offer                         |
+
+Filters supported: `localisation`, `type` (CDI, CDD, stage)
+Pagination: 10 offers per page, sorted by creation date.
+
+### Applications
+
+| Method | Endpoint                      | Role                   | Description                |
+| ------ | ----------------------------- | ---------------------- | -------------------------- |
+| POST   | /api/offres/{id}/candidater   | Candidat               | Apply to a job offer       |
+| GET    | /api/mes-candidatures         | Candidat               | View own applications      |
+| GET    | /api/offres/{id}/candidatures | Recruteur (owner only) | View applications received |
+| PATCH  | /api/candidatures/{id}/statut | Recruteur (owner only) | Change application status  |
+
+Statuses: `en_attente`, `acceptee`, `refusee`
+
+### Administration
+
+| Method | Endpoint               | Role  | Description                  |
+| ------ | ---------------------- | ----- | ---------------------------- |
+| GET    | /api/admin/users       | Admin | List all users               |
+| DELETE | /api/admin/users/{id}  | Admin | Delete a user account        |
+| PATCH  | /api/admin/offres/{id} | Admin | Activate or deactivate offer |
+
+---
+
+## Events & Listeners
+
+The platform uses Laravel Events & Listeners to decouple application logic.
+
+- `CandidatureDeposee` — fired when a candidate applies to an offer. Logs the date, candidate name, and offer title to `storage/logs/candidatures.log`.
+- `StatutCandidatureMis` — fired when a recruiter changes an application status. Logs the old status, new status, and date to the same file.
+
+---
+
+## Postman Collection
+
+Import `/postman/mini-linkedin.json` into Postman to test all endpoints.
+The collection covers: registration, login, full profile CRUD, offers CRUD, applications, status changes, and error cases (401, 403, 422).
+
+---
+
+## Git Workflow
+
+Each feature was developed on a dedicated branch and integrated via Pull Request into `main`.
+Branch protection rules were enforced — all PRs required at least one approval before merging.
+
+> **Note:** One branch (`feature/candidatures-admin`) contained two features due to an initial misunderstanding of the Git workflow. The team identified this mistake, corrected the approach for all subsequent branches, and chose to document it here as a learning point.
+
+---
+
+## Authors
+
+- **Yassin Touggani** — Database (migrations, models, seeders), JWT authentication & role middleware, Events logging configuration, Project setup & Git management
+
+- **Kévin CATARYA** — Profile management (3.1), Job offers (3.2), Events & Listeners (Part 4), Postman collection (success and error tests, request name format: Error{code} - request role - user role)
+
+- **Younes Benamar** — Applications (3.3), Administration (3.4), Event dispatching in controllers
