@@ -21,7 +21,9 @@ class LogStatutCandidatureMis
      * Handle the event.
      */
     public function handle(StatutCandidatureMis $event): void
-    {
-        Log::info("Statut changé de {$event->ancienStatut} à {$event->nouveauStatut}");
-    }
+{
+    Log::channel('candidatures')->info(
+        "[" . now() . "] Statut changé de {$event->ancienStatut} à {$event->nouveauStatut}"
+    );
+}
 }
