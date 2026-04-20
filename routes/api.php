@@ -11,7 +11,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 // Protected routes (JWT token required)
-Route::middleware(['auth:api','role:candidat'])->group(function () {
+Route::middleware('auth:api')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
@@ -24,7 +24,7 @@ Route::middleware(['auth:api', 'role:admin'])->get('/admin/test', function () {
 });
 
 //Routes pour la connexion au profil du candidat
-Route::middleware('role:candidat')->group(function () {
+Route::middleware(['auth:api', 'role:candidat'])->group(function () {
     Route::post('/profil', [ProfilController::class, 'store']);
     Route::get('/profil', [ProfilController::class, 'show']);
     Route::put('/profil', [ProfilController::class, 'update']);
