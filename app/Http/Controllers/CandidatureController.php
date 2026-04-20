@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Events\CandidatureDeposee;
+use App\Events\StatutCandidatureMis;
 use App\Models\Candidature;
 use App\Models\Offre;
 use Illuminate\Http\Request;
@@ -41,7 +43,9 @@ class CandidatureController extends Controller
             'statut'    => 'en_attente',
         ]);
 
-        return response()->json([
+	event(new CandidatureDeposee($candidature));
+
+	return response()->json([
             'message'     => 'Candidature soumise avec succès.',
             'candidature' => $candidature,
         ], 201);
@@ -96,6 +100,8 @@ class CandidatureController extends Controller
 
         $ancienStatut = $candidature->statut;
         $candidature->update(['statut' => $validated['statut']]);
+
+	event(new StatutCandidatureMis($candidature, $ancienStatut,  $validated['statut']));
 
         return response()->json([
             'message'     => 'Statut mis à jour.',
