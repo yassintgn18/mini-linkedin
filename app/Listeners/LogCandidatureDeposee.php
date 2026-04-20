@@ -23,8 +23,11 @@ class LogCandidatureDeposee
      */
    public function handle(CandidatureDeposee $event): void
 {
-    $user = $event->user;
-    $offre = $event->offre;
+    $candidature = $event->candidature;
+
+    $profil = $candidature->profil;
+    $user = $profil ? $profil->user : null;
+    $offre = $candidature->offre;
 
     Log::channel('candidatures')->info(
         "[" . now() . "] Candidature déposée par " . $user->name . " à l'offre " . $offre->titre

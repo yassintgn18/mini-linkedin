@@ -1,0 +1,1016 @@
+{
+  "info": {
+    "_postman_id": "231442aa-3ee5-46cc-84d8-ab81e0eedc3f",
+    "name": "mini_linkedin",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52492563",
+    "_collection_link": "https://go.postman.co/collection/52492563-231442aa-3ee5-46cc-84d8-ab81e0eedc3f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login - Candidat",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"stokes.ebba@example.com\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/login",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Error422 - Connexion sans mail - Candidat",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"cpfeffer@example.com\",\r\n    \"password\": \"password\"\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/login",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Profil - Candidat",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAxNTgxLCJleHAiOjE3NzY3MDUxODEsIm5iZiI6MTc3NjcwMTU4MSwianRpIjoidVRFTHppNHoyNEdNaktTYyIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.cq0Kiwdg78eADGLdTle3H_yzBXnJOvIp4Ne_2ZYU-AQ",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/profil",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "profil"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Error401 - Acces sans token  - Candidat",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"cpfeffer@example.com\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/profil",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "profil"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Profil - Candidat",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAxNTgxLCJleHAiOjE3NzY3MDUxODEsIm5iZiI6MTc3NjcwMTU4MSwianRpIjoidVRFTHppNHoyNEdNaktTYyIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.cq0Kiwdg78eADGLdTle3H_yzBXnJOvIp4Ne_2ZYU-AQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Développeur Laravel Junior\",\r\n    \"disponible\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/profil",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "profil"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Competence - Candidat",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAxNTgxLCJleHAiOjE3NzY3MDUxODEsIm5iZiI6MTc3NjcwMTU4MSwianRpIjoidVRFTHppNHoyNEdNaktTYyIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.cq0Kiwdg78eADGLdTle3H_yzBXnJOvIp4Ne_2ZYU-AQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n     \"competence_id\": 1,\r\n    \"niveau\": \"débutant\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/profil/competences",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "profil",
+            "competences"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Competence - Candidat",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAxNTgxLCJleHAiOjE3NzY3MDUxODEsIm5iZiI6MTc3NjcwMTU4MSwianRpIjoidVRFTHppNHoyNEdNaktTYyIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.cq0Kiwdg78eADGLdTle3H_yzBXnJOvIp4Ne_2ZYU-AQ",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/profil/competences/1\n",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "profil",
+            "competences",
+            "1\n"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login - Recruteur",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAxNTgxLCJleHAiOjE3NzY3MDUxODEsIm5iZiI6MTc3NjcwMTU4MSwianRpIjoidVRFTHppNHoyNEdNaktTYyIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.cq0Kiwdg78eADGLdTle3H_yzBXnJOvIp4Ne_2ZYU-AQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"herzog.rollin@example.net\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/login",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Creer_Offre - Recruteur",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAyNzY1LCJleHAiOjE3NzY3MDYzNjUsIm5iZiI6MTc3NjcwMjc2NSwianRpIjoiRXJYaHZRblFjZHVaZkY1YSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6InJlY3J1dGV1ciJ9.WZ-us_Dnvw-yh9GXZbA3hm-iOn3WdmopPHltrPwnMAQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel\",\r\n    \"description\" : \"Nous recherchons un dev Laravel\",\r\n    \"localisation\" : \"Casablanca\",\r\n    \"type\" : \"CDI\",\r\n    \"actif\" : true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Error403 - Acces refuse",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzEwMTUyLCJleHAiOjE3NzY3MTM3NTIsIm5iZiI6MTc3NjcxMDE1MiwianRpIjoidXhpVG1MMkhyU3l2YmNybyIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.qVZKglcrT1kcq6iR3MBX-008rHyEPwD2BD03yondkP4",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel\",\r\n    \"description\" : \"Nous recherchons un dev Laravel\",\r\n    \"localisation\" : \"Casablanca\",\r\n    \"type\" : \"CDI\",\r\n    \"actif\" : true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier_offre - Recruteur",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAyNzY1LCJleHAiOjE3NzY3MDYzNjUsIm5iZiI6MTc3NjcwMjc2NSwianRpIjoiRXJYaHZRblFjZHVaZkY1YSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6InJlY3J1dGV1ciJ9.WZ-us_Dnvw-yh9GXZbA3hm-iOn3WdmopPHltrPwnMAQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel Senior\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Supprimer_offre - Recruteur",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzAyNzY1LCJleHAiOjE3NzY3MDYzNjUsIm5iZiI6MTc3NjcwMjc2NSwianRpIjoiRXJYaHZRblFjZHVaZkY1YSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6InJlY3J1dGV1ciJ9.WZ-us_Dnvw-yh9GXZbA3hm-iOn3WdmopPHltrPwnMAQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel\",\r\n    \"description\" : \"Nous recherchons un dev Laravel\",\r\n    \"localisation\" : \"Casablanca\",\r\n    \"type\" : \"CDI\",\r\n    \"actif\" : true\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "voir_candidatures - Recruteur",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA3NDczLCJleHAiOjE3NzY3MTEwNzMsIm5iZiI6MTc3NjcwNzQ3MywianRpIjoiWHlvTTk1MGZOWVk3SWd6QiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6InJlY3J1dGV1ciJ9.0ZrKSgkDOCVdkxVV7f_4WMxir3SXMFgHsCsIcmcZtGg",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel\",\r\n    \"description\" : \"Nous recherchons un dev Laravel\",\r\n    \"localisation\" : \"Casablanca\",\r\n    \"type\" : \"CDI\",\r\n    \"actif\" : true\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres/2/candidatures",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres",
+            "2",
+            "candidatures"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Error422 - changer_statut - Recruteur",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA5MTMwLCJleHAiOjE3NzY3MTI3MzAsIm5iZiI6MTc3NjcwOTEzMCwianRpIjoiVWpWZkttMWtOeFRKQm94eSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6InJlY3J1dGV1ciJ9._3FDEvTNFd8qaFEleANvCEKi_VaJogyzZp3OpNTG2Y8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "Body: { \"statut\": \"acceptee\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/candidatures/3/statut",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "candidatures",
+            "3",
+            "statut"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Voir_offres_actives - Candidat",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA3Njk1LCJleHAiOjE3NzY3MTEyOTUsIm5iZiI6MTc3NjcwNzY5NSwianRpIjoiYlhEdnNKQTdzMDhsNGxHUCIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.a_EDJzH9oiPM7dTAdAl7dR5x5S2B-L1RUoJD6WGnBQ8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel\",\r\n    \"description\" : \"Nous recherchons un dev Laravel\",\r\n    \"localisation\" : \"Casablanca\",\r\n    \"type\" : \"CDI\",\r\n    \"actif\" : true\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Detail_Offre - Candidat",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA3Njk1LCJleHAiOjE3NzY3MTEyOTUsIm5iZiI6MTc3NjcwNzY5NSwianRpIjoiYlhEdnNKQTdzMDhsNGxHUCIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.a_EDJzH9oiPM7dTAdAl7dR5x5S2B-L1RUoJD6WGnBQ8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\" : \"Developpeur Laravel\",\r\n    \"description\" : \"Nous recherchons un dev Laravel\",\r\n    \"localisation\" : \"Casablanca\",\r\n    \"type\" : \"CDI\",\r\n    \"actif\" : true\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres/15",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres",
+            "15"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Postuler_offre - Candidat",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA3Njk1LCJleHAiOjE3NzY3MTEyOTUsIm5iZiI6MTc3NjcwNzY5NSwianRpIjoiYlhEdnNKQTdzMDhsNGxHUCIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.a_EDJzH9oiPM7dTAdAl7dR5x5S2B-L1RUoJD6WGnBQ8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"message\": \"Je suis motivé pour ce poste\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres/3/candidater",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres",
+            "3",
+            "candidater"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Error422 - Deja postuler - Candidat",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA2NjQwLCJleHAiOjE3NzY3MTAyNDAsIm5iZiI6MTc3NjcwNjY0MCwianRpIjoiRVYxVE83TnRnYTlFdUtMUSIsInN1YiI6IjgiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImNhbmRpZGF0In0.gOE3votswYDb6G47MCnqnpfiw1AOro1alV-PaE5R32Q",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"message\": \"Je suis motivé pour ce poste\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offres/2/candidater",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offres",
+            "2",
+            "candidater"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login - Admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"cpfeffer@example.com\",\r\n    \"password\": \"password\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/login",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "view_all_users - admin",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA4NTc1LCJleHAiOjE3NzY3MTIxNzUsIm5iZiI6MTc3NjcwODU3NSwianRpIjoiVVhGdUh4cnJVeTBhMTJQeCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImFkbWluIn0.6u_XnQ3yQq43nndzkvXtVKDtX05WKl9UjCerM2GUBzg",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/admin/users",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "admin",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Activer/Desactiver - Admin",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA4NTc1LCJleHAiOjE3NzY3MTIxNzUsIm5iZiI6MTc3NjcwODU3NSwianRpIjoiVVhGdUh4cnJVeTBhMTJQeCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImFkbWluIn0.6u_XnQ3yQq43nndzkvXtVKDtX05WKl9UjCerM2GUBzg",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/admin/offres/8/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "admin",
+            "offres",
+            "8",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Error401 - Unauthentificated Admin",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/admin/users/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "admin",
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete - Admin",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA4NTc1LCJleHAiOjE3NzY3MTIxNzUsIm5iZiI6MTc3NjcwODU3NSwianRpIjoiVVhGdUh4cnJVeTBhMTJQeCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImFkbWluIn0.6u_XnQ3yQq43nndzkvXtVKDtX05WKl9UjCerM2GUBzg",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/admin/users/17",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "admin",
+            "users",
+            "17"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Changer_statut - Recruteur",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzA5MTMwLCJleHAiOjE3NzY3MTI3MzAsIm5iZiI6MTc3NjcwOTEzMCwianRpIjoiVWpWZkttMWtOeFRKQm94eSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6InJlY3J1dGV1ciJ9._3FDEvTNFd8qaFEleANvCEKi_VaJogyzZp3OpNTG2Y8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"statut\": \"acceptee\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/candidatures/3/statut",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "candidatures",
+            "3",
+            "statut"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzc2NzEwMzQ5LCJleHAiOjE3NzY3MTM5NDksIm5iZiI6MTc3NjcxMDM0OSwianRpIjoiYUZDaUp5Z2pvT0hiN3RXZSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3Iiwicm9sZSI6ImFkbWluIn0.0qArbHxFOsKLrwRh-gsAWM2wJG3qop73wM1GxmUqT8o",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\" : \"cpfeffer@example.com\",\r\n    \"password\": \"password\"\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/logout",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

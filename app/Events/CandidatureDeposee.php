@@ -9,8 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
-use App\Models\Offre;
+use App\Models\Candidature;
 
 class CandidatureDeposee
 {
@@ -19,12 +18,10 @@ class CandidatureDeposee
     /**
      * Create a new event instance.
      */
-    public User $user;
-    public Offre $offre;
-    public function __construct(User $user, Offre $offre)
+    public Candidature $candidature;
+    public function __construct(Candidature $candidature)
     {
-        $this->user = $user;
-        $this->offre = $offre;
+        $this->candidature = $candidature;
     }
 
     /**
